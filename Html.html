@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>密码测试</title>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.js"></script>
+  <script type="text/javascript" src="JS.js"></script>
+</head>
+<body>
+  <div>
+    <div><span>Your Password:</span><input id="password" type="text"/><button id="checkPassword">Check Password</button></div>
+    <div><span>Strength:</span><span id="passwordStrength">0</span></div>
+    <div><br/></div>
+    <div>
+      <table border="1">
+        <tr>
+          <td>Additions</td>
+        </tr>
+        <tr>
+          <td>Function</td>
+          <td>Count</td>
+          <td>Bonus</td>
+        </tr>
+        <tr>
+          <td>Number of Charseters</td>
+          <td id="lengthCount">0</td>
+          <td id="lengthBonus">0</td>
+        </tr>
+        <tr>
+          <td>Uppercase Letters</td>
+          <td id="upperLetterCount">0</td>
+          <td id="upperLetterBonus">0</td>
+        </tr>
+        <tr>
+          <td>Lowercase Letters</td>
+          <td id="lowerLetterCount">0</td>
+          <td id="lowerLetterBonus">0</td>
+        </tr>
+        <tr>
+          <td>Numbers</td>
+          <td id="numberCount">0</td>
+          <td id="numberBonus">0</td>
+        </tr>
+        <tr>
+          <td>Symbols</td>
+          <td id="symbolCount">0</td>
+          <td id="symbolBonus">0</td>
+        </tr>
+        <tr>
+          <td>Middle Numbers or Symbols</td>
+          <td id="middleNumberOrSymbolCount">0</td>
+          <td id="middleNumberOrSymbolBonus">0</td>
+        </tr>
+        <tr>
+          <td>Requirements</td>
+          <td id="requirementCount">0</td>
+          <td id="requirementBonus">0</td>
+        </tr>
+        <tr>
+          <td>Deductions</td>
+        </tr>
+        <tr>
+          <td>Letters Only</td>
+          <td id="lettersOnlyCount">0</td>
+          <td id="lettersOnlyBonus">0</td>
+        </tr>
+        <tr>
+          <td>Numbers Only</td>
+          <td id="numbersOnlyCount">0</td>
+          <td id="numbersOnlyBonus">0</td>
+        </tr>
+        <tr>
+          <td>Repeat Characters (Case Insensitive)</td>
+          <td id="repeatCharactersCount">0</td>
+          <td id="repeatCharactersBonus">0</td>
+        </tr>
+        <tr>
+          <td>Consecutive Uppercase Letters</td>
+          <td id="consecutiveUpperLetterCount">0</td>
+          <td id="consecutiveUpperLetterBonus">0</td>
+        </tr>
+        <tr>
+          <td>Consecutive Lowercase Letters</td>
+          <td id="consecutiveLowerLetterCount">0</td>
+          <td id="consecutiveLowerLetterBonus">0</td>
+        </tr>
+        <tr>
+          <td>Consecutive Numbers</td>
+          <td id="consecutiveNumberCount">0</td>
+          <td id="consecutiveNumberBonus">0</td>
+        </tr>
+        <tr>
+          <td>Sequential Letters (3+)</td>
+          <td id="sequentialLetterCount">0</td>
+          <td id="sequentialLetterBonus">0</td>
+        </tr>
+        <tr>
+          <td>Sequential Numbers (3+)</td>
+          <td id="sequentialNumberCount">0</td>
+          <td id="sequentialNumberBonus">0</td>
+        </tr>
+        <tr>
+          <td>Sequential Symbols (3+)</td>
+          <td id="sequentialSymbolCount">0</td>
+          <td id="sequentialSymbolBonus">0</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div>
+    <input style='width: 500px; height: 100px'/>
+    <input style='width: 500px; height: 100px'/>
+  </div>
+</body>
+</html>
