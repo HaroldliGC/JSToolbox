@@ -1,10 +1,7 @@
 window.onload = function(){
   var checkPasswordButton = document.getElementById("checkPassword");
   checkPasswordButton.addEventListener("click", checkPasswordStrength, false);
-  var passwordStrength = document.getElementById("passwordStrength");
 };
-
-
 
 function consoleLog(theme, obj){
   console.group(theme);
@@ -43,7 +40,6 @@ const theme = [
   'sequentialNumber',
   'sequentialSymbol'
 ];
-
 
 //base function
 function getConsecutiveCharacterCount(regExp){
@@ -347,14 +343,18 @@ const Deductions = {
   }
 };
 
-
-function checkPasswordStrength(event){
-  const password = document.getElementById("password").value;
-  const passwordStrength = document.getElementById('passwordStrength');
-
+const getPasswordBonus = (password) => {
   const additionBonusArray = _.map(Additions, (item) => (item(password)));
   const deductionBonusArray = _.map(Deductions, (item) => (item(password)));
   const bonusArray = [...additionBonusArray, ...deductionBonusArray];
+  return bonusArray;
+};
+
+const checkPasswordStrength = (event) => {
+  const password = document.getElementById("password").value;
+  const passwordStrength = document.getElementById('passwordStrength');
+
+  const bonusArray = getPasswordBonus(password);
 
   const bonus = _.reduce(bonusArray, (result, value) => {
     return result + value.bonus;
@@ -363,16 +363,10 @@ function checkPasswordStrength(event){
   passwordStrength.innerText = bonus;
 
   _.forEach(bonusArray, (value, index) => {
-    consoleLog(type.additions[index], value);
+    consoleLog([...type.additions, ...type.deductions][index], value);
   });
 
   _.forEach(bonusArray, (value, index) => {
     showBonus(theme[index], value);
   })
-
 };
-
-
-
-
-
