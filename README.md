@@ -1,6 +1,7 @@
 # JavaScript常用工具箱
   平时收集的一些常用的js方法或者工具
-  由于部分功能使用了lodash的方法，所以你可能需要在[lodash官网页面](https://lodash.com) F12运行代码，查看效果。
+  由于部分功能使用了ES6的语法特性，所以你可能需要在支持ES6语法的浏览器上运行代码
+  由于部分功能使用了lodash的方法，所以你可能需要在[lodash官网页面](https://lodash.com) F12运行代码，查看效果
 
 ## password strength test function
   一个用于测试密码强度的方法，包含一个测试用的demo页面
