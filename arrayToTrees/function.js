@@ -1,7 +1,4 @@
-var arrayToTrees = function(arr, option = {}){
-    var key = option.key || 'id';
-    var parentKey = option.parentKey || 'parentId';
-    var childrenKey = option.childrenKey || 'children';
+var arrayToTrees = function(arr, {key = 'id', parentKey = 'parentId', childrenKey = 'children'} = {}){
     var meta = {};
     var result = [];
     var kids = [];
