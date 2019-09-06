@@ -1,50 +1,3 @@
-window.onload = function(){
-  var checkPasswordButton = document.getElementById("checkPassword");
-  checkPasswordButton.addEventListener("click", checkPasswordStrength, false);
-  var passwordStrength = document.getElementById("passwordStrength");
-};
-
-
-
-function consoleLog(theme, obj){
-  console.group(theme);
-    console.log("Count:", obj.count);
-    console.log("Bonus:", obj.bonus);
-  console.groupEnd();
-}
-
-function showBonus(theme, obj){
-  const count = document.getElementById(`${theme}Count`);
-  const bonus = document.getElementById(`${theme}Bonus`);
-  count.innerText = obj.count;
-  bonus.innerText = obj.bonus;
-}
-
-const type = {
-  additions: ["Number of Characters", "Uppercase Letters", "Lowercase Letters", "Numbers", "Symbols", "Middle Numbers or Symbols", "Requirements"],
-  deductions: ['Letters Only', 'Numbers Only', 'Repeat Characters (Case Insensitive)', 'Consecutive Uppercase Letters', 'Consecutive Lowercase Letters', 'Consecutive Numbers', 'Sequential Letters (3+)', 'Sequential Numbers (3+)', 'Sequential Symbols (3+)']
-};
-
-const theme = [
-  'length',
-  'upperLetter',
-  'lowerLetter',
-  'number',
-  'symbol',
-  'middleNumberOrSymbol',
-  'requirement',
-  'lettersOnly',
-  'numbersOnly',
-  'repeatCharacters',
-  'consecutiveUpperLetter',
-  'consecutiveLowerLetter',
-  'consecutiveNumber',
-  'sequentialLetter',
-  'sequentialNumber',
-  'sequentialSymbol'
-];
-
-
 //base function
 function getBonusByCountAndWeight(getCount, weight, predicate = _.identity){
   return function(password){
@@ -146,8 +99,6 @@ const getSequentialLetterCount = getSequentialCharacterCount(sequentialCharacter
 const getSequentialNumberCount = getSequentialCharacterCount(sequentialCharacterConfig.sequentialNumber, sequentialCharacterConfig.sequentialLength);
 const getSequentialSymbolCount = getSequentialCharacterCount(sequentialCharacterConfig.sequentialSymbol, sequentialCharacterConfig.sequentialLength);
 
-
-
 //is function
 function isNumber(char){
   return /^[0-9]+$/.test(char);
@@ -169,7 +120,7 @@ function isSymbol(char){
   if (char === ''){
     return false;
   }
-  return !(isNumber(char) || isLetter(char));
+  return !isNumber(char) && !isLetter(char);
 }
 
 //has function
@@ -191,7 +142,7 @@ function containLetter(string){
 
 function containSymbol(string){
   //不全为数字或字母即认为含有符号
-  return (!(/^[0-9a-zA-Z]+$/.test(string)));
+  return !(/^[0-9a-zA-Z]+$/.test(string));
 }
 
 //getCount function
@@ -247,8 +198,6 @@ function getRequirementCount(password){
   return count;
 }
 
-
-
 //getBonus function
 //Additions Bonus
 const Additions = {
@@ -286,7 +235,6 @@ const Additions = {
     return (getRequirementCount(password) >= 4);
   })
 };
-
 
 //Deductions
 const Deductions = {
@@ -330,11 +278,7 @@ const Deductions = {
   getSequentialSymbolBonus: getBonusByCountAndWeight(getSequentialSymbolCount, weight.sequentialSymbol)
 };
 
-
-function checkPasswordStrength(event){
-  const password = document.getElementById("password").value;
-  const passwordStrength = document.getElementById('passwordStrength');
-
+function checkPasswordStrength(password){
   const additionBonusArray = _.map(Additions, (item) => (item(password)));
   const deductionBonusArray = _.map(Deductions, (item) => (item(password)));
   const bonusArray = [...additionBonusArray, ...deductionBonusArray];
@@ -343,14 +287,5 @@ function checkPasswordStrength(event){
     return result + value.bonus;
   }, 0);
 
-  passwordStrength.innerText = bonus;
-
-  _.forEach(bonusArray, (value, index) => {
-    consoleLog(type.additions[index], value);
-  });
-
-  _.forEach(bonusArray, (value, index) => {
-    showBonus(theme[index], value);
-  })
-
+  return (bonus > 100 ? 100 : bonus);
 };
